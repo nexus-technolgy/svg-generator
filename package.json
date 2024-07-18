@@ -29,11 +29,9 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/"
   },
-  "dependencies": {
-    "vue": "^3.4.29",
-    "vue-router": "^4.3.3"
-  },
   "devDependencies": {
+    "vue": "^3.4.29",
+    "vue-router": "^4.3.3",
     "@rushstack/eslint-patch": "^1.8.0",
     "@tsconfig/node20": "^20.1.4",
     "@types/jsdom": "^21.1.7",

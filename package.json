@@ -3,13 +3,22 @@
   "version": "1.0.0",
   "private": false,
   "license": "Apache-2.0",
-  "author": "Nexustech",
+  "author": "Daniel Bryar",
   "description": "SVG Generator",
+  "main": "lib/generator.js",
   "module": "lib/generator.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/nexus-technolgy/svg-generator"
   },
+  "files": [
+    "lib"
+  ],
+  "keywords": [
+    "svg",
+    "generator",
+    "image"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "rm -rf dist && run-p type-check \"build:module\" \"build:app\" --",

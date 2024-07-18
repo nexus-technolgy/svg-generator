@@ -2,9 +2,11 @@
 
 This is a self-rendering SPA that will generate a placeholder image for most requirements in web development
 
+A sample application has been deployed at [https://dynamic-svg.web.app/](https://dynamic-svg.web.app/)
+
 Use the following format in the URL to generate an SVG:
 
-/`width`x`height`/`bgColor`/`fgColor`/`text`
+https://dynamic-svg.web.app/`width`x`height`/`bgColor`/`fgColor`/`text`
 
 #### Examples
 
@@ -16,40 +18,66 @@ Use the following format in the URL to generate an SVG:
 
 **NB** The text font size will scale from 8 - 24 based on the available space inside the image
 
-## Recommended IDE Setup
+## Module
+
+```
+lib/generator.js
+```
+
+The module is a single class that returns an `svg` image and `mimeType`.
+
+```ts
+import { SvgGenerator } from "@nexustech/svg-generator";
+
+const { svg, mimeType } = new SvgGenerator("200x100", "f00", "white", "Hello+World");
+```
+
+```svg
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="100" viewBox="0 0 200 100"><rect width="200" height="100" fill="#f00"/><text x="50%" y="50%" fill="white" font-family="Arial" font-size="24" dominant-baseline="middle" text-anchor="middle">Hello World</text></svg>
+```
+
+Expected usage is in your own application/API where you need to render placeholder images and don't want to expose your app to the tracking and other issues associated with remote image generators.
+
+## App Development
+
+The repository contains both the module and the app, although they are packaged individually
+
+### Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
-## Type Support for `.vue` Imports in TS
+### Type Support for `.vue` Imports in TS
 
 TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
 
-## Project Setup
+### Project Setup
+
+`bun` or `yarn` or `npm`; take you pick, they all do the same thing.
 
 ```sh
 bun install
 ```
 
-### Compile and Hot-Reload for Development
+#### Compile and Hot-Reload App for Development
 
 ```sh
 bun run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+#### Compile and Package App
+
+```sh
+bun run build:app
+```
+
+#### Compile and Package Module
+
+```sh
+bun run build:module
+```
+
+#### Type-Check, Compile and Minify both
 
 ```sh
 bun run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-bun run test
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-bun run lint
 ```

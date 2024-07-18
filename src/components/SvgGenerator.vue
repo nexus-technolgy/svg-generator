@@ -7,8 +7,7 @@
 </template>
 
 <script lang="ts">
-import { SvgGenerator } from "@/generator";
-import type { SvgGeneratorParams } from "@/generator";
+import { SvgGenerator, type SvgGeneratorParams } from "@/generator";
 import { defineComponent } from "vue";
 import { useRoute } from "vue-router";
 

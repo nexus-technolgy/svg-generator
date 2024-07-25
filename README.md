@@ -38,6 +38,47 @@ const { svg, mimeType } = new SvgGenerator("200x100", "f00", "white", "Hello+Wor
 
 Expected usage is in your own application/API where you need to render placeholder images and don't want to expose your app to the tracking and other issues associated with remote image generators.
 
+### Example in Express
+
+`image.ts`
+
+```ts
+import { SvgGenerator } from "@nexustech/svg-generator";
+import { Request, Response, Router } from "express";
+
+// Route /image
+export const image = Router();
+
+image.get("/:dimensions/:bg?/:fg?/:text?", (req: Request, res: Response) => {
+  const { dimensions, bg, fg, text } = req.params;
+  const { svg, mimeType } = new SvgGenerator(dimensions, bg, fg, text);
+  res.setHeader("Content-Type", mimeType);
+  res.send(svg);
+});
+```
+
+`index.ts`
+
+```ts
+import { image } from "./image";
+import express from "express";
+// ...other imports
+
+const app = express();
+// ...middleware
+
+if (!isProd) app.use("/image", image);
+// ...other routes
+
+app.listen(port, function () {
+  logger.info(`Listening on ${host}:${port}`);
+});
+```
+
+Then you can call your own backend for a placeholder image using `/image/<width>x<height>/<bg-color>/<fg-color>/<text>` or any other valid combination.
+
+Unlike the demo app, using this in your own backend will respond with an `image/svg+xml` content response containing only the svg.
+
 ## App Development
 
 The repository contains both the module and the app, although they are packaged individually

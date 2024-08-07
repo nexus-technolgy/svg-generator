@@ -9,7 +9,7 @@
   "module": "lib/generator.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nexus-technolgy/svg-generator"
+    "url": "git+https://github.com/nexus-technolgy/svg-generator.git"
   },
   "files": [
     "lib"
